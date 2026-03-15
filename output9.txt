@@ -1,0 +1,19 @@
+Stack                                    Input                                    Action
+--------------------------------------------------------------------------------------------------------
+0                                        ( id + id ) * ( id - id ) + id * id $    Shift 4
+0(4                                      id + id ) * ( id - id ) + id * id $      Shift 5
+0(4id5                                   + id ) * ( id - id ) + id * id $         Reduce 6 (GOTO [4, F])
+0(4F3                                    + id ) * ( id - id ) + id * id $         Reduce 4 (GOTO [4, T])
+0(4T2                                    + id ) * ( id - id ) + id * id $         Reduce 2 (GOTO [4, E])
+0(4E8                                    + id ) * ( id - id ) + id * id $         Shift 6
+0(4E8+6                                  id ) * ( id - id ) + id * id $           Shift 5
+0(4E8+6id5                               ) * ( id - id ) + id * id $              Reduce 6 (GOTO [6, F])
+0(4E8+6F3                                ) * ( id - id ) + id * id $              Reduce 4 (GOTO [6, T])
+0(4E8+6T9                                ) * ( id - id ) + id * id $              Reduce 1 (GOTO [4, E])
+0(4E8                                    ) * ( id - id ) + id * id $              Shift 11
+0(4E8)11                                 * ( id - id ) + id * id $                Reduce 5 (GOTO [0, F])
+0F3                                      * ( id - id ) + id * id $                Reduce 4 (GOTO [0, T])
+0T2                                      * ( id - id ) + id * id $                Shift 7
+0T2*7                                    ( id - id ) + id * id $                  Shift 4
+0T2*7(4                                  id - id ) + id * id $                    Shift 5
+Unknown token: -

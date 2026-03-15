@@ -1,0 +1,30 @@
+Stack                                    Input                                    Action
+--------------------------------------------------------------------------------------------------------
+0                                        id * id + id $                           Shift 5
+0id5                                     * id + id $                              Reduce 6 (GOTO [0, F])
+0F3                                      * id + id $                              Reduce 4 (GOTO [0, T])
+0T2                                      * id + id $                              Shift 7
+0T2*7                                    id + id $                                Shift 5
+0T2*7id5                                 + id $                                   Reduce 6 (GOTO [7, F])
+0T2*7F10                                 + id $                                   Reduce 3 (GOTO [0, T])
+0T2                                      + id $                                   Reduce 2 (GOTO [0, E])
+0E1                                      + id $                                   Shift 6
+0E1+6                                    id $                                     Shift 5
+0E1+6id5                                 $                                        Reduce 6 (GOTO [6, F])
+0E1+6F3                                  $                                        Reduce 4 (GOTO [6, T])
+0E1+6T9                                  $                                        Reduce 1 (GOTO [0, E])
+--------------------------------------------------------------------------------------------------------
+Parse tree:
+/E
+/E/E
+/E/E/T
+/E/E/T/T
+/E/E/T/T/F
+/E/E/T/T/F/id
+/E/E/T/*
+/E/E/T/F
+/E/E/T/F/id
+/E/+
+/E/T
+/E/T/F
+/E/T/F/id
