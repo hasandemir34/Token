@@ -1,3 +1,6 @@
+# Hasan Demir b231202054 
+# Ahmet Yiğit b231202049
+
 import sys
 import os
 
@@ -80,8 +83,10 @@ def parse(tokens):
         except KeyError:
             # Syntax Error durumu (input7.txt)
             print("-" * 104)
+            print(f"SYNTAX ERROR at token: {current_token}")
             print("Parse tree:")
             if tree_stack:
+                # Hataya kadar olan ağacı gösterir
                 print_parse_tree(tree_stack[-1])
             return False
         
@@ -132,13 +137,11 @@ def parse(tokens):
             print_parse_tree(tree_stack[0])
             return True
 
-# --- 5. ANA AKIŞ VE OTOMASYON (TÜM DOSYALARI ÇIKARMA) ---
+# --- 5. ANA AKIŞ VE OTOMASYON ---
 if __name__ == "__main__":
     print("LR Parser Çalıştırılıyor...\n")
     
-    # 1'den 9'a kadar olan girdi dosyaları
     for i in range(1, 10):
-        # Eğer dosyaların TestCases isimli bir klasördeyse aşağıdaki yolu değiştirebilirsin
         input_file = f"input{i}.txt"  
         output_file = f"output{i}.txt"
         
@@ -150,14 +153,12 @@ if __name__ == "__main__":
             
         print(f"İşleniyor: {input_file} -> {output_file} olarak kaydedildi.")
         
-        # Ekran çıktılarını geçici olarak .txt dosyasına yönlendiriyoruz
         original_stdout = sys.stdout
         try:
             with open(output_file, 'w', encoding='utf-8') as f:
                 sys.stdout = f
                 parse(tokens)
         finally:
-            # Yönlendirmeyi tekrar eski haline (Terminale) alıyoruz
             sys.stdout = original_stdout
             
     print("\nTüm dosyalar başarıyla oluşturuldu! Projen teslim için hazır.")
