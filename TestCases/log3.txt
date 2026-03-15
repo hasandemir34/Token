@@ -1,0 +1,270 @@
+./LR-parser input3.txt output3.txt
+
+Action table loaded:
+------------------------------------------------------------
+State	id	+	*	(	)	$
+0	s5	-	-	s4	-	-	
+1	-	s6	-	-	-	accept	
+2	-	r2	s7	-	r2	r2	
+3	-	r4	r4	-	r4	r4	
+4	s5	-	-	s4	-	-	
+5	-	r6	r6	-	r6	r6	
+6	s5	-	-	s4	-	-	
+7	s5	-	-	s4	-	-	
+8	-	s6	-	-	s11	-	
+9	-	r1	s7	-	r1	r1	
+10	-	r3	r3	-	r3	r3	
+11	-	r5	r5	-	r5	r5	
+------------------------------------------------------------
+GOTO table loaded:
+---------------------------------------
+State	E	T	F
+0	1	2	3
+1	-	-	-
+2	-	-	-
+3	-	-	-
+4	8	2	3
+5	-	-	-
+6	-	9	3
+7	-	-	10
+8	-	-	-
+9	-	-	-
+10	-	-	-
+11	-	-	-
+---------------------------------------
+Grammar rules loaded:
+--------------------------------------------------
+Rule 1: E -> E + T (RHS token count: 3)
+Rule 2: E -> T (RHS token count: 1)
+Rule 3: T -> T * F (RHS token count: 3)
+Rule 4: T -> F (RHS token count: 1)
+Rule 5: F -> ( E ) (RHS token count: 3)
+Rule 6: F -> id (RHS token count: 1)
+--------------------------------------------------
+
+Parsing started for the input: id * ( id + id ) $ 
+
+Current stack content 0
+Current state (stack-top) is 0, next token is 'id' (action table column 0)
+Fetched action from the table: s5
+
+Shift and goto state 5: push the token "id" and state 5 onto the stack
+Parse tree: token "id" becomes a node (leaf) 
+Move to next token
+
+Current stack content 0id5
+Current state (stack-top) is 5, next token is '*' (action table column 2)
+Fetched action from the table: r6
+
+Reduce using grammar rule 6: F -> id
+Stack content before reduce: 0id5 
+Pop tokens and associated states from the stack considering the tokens at RHS of grammar rule (6: F -> id) 
+State at stack is 0 (current stack content: 0)
+Push LHS (F) of the grammar rule (6: F -> id) onto stack
+Push new state comes from goto table onto stack: 3 (GOTO[0, F])
+Parse tree: grammar rule's LHS (F) becomes a node (parent) and tokens at the RHS (id) becomes its children
+Stack content after reduce: 0F3 
+
+Current stack content 0F3
+Current state (stack-top) is 3, next token is '*' (action table column 2)
+Fetched action from the table: r4
+
+Reduce using grammar rule 4: T -> F
+Stack content before reduce: 0F3 
+Pop tokens and associated states from the stack considering the tokens at RHS of grammar rule (4: T -> F) 
+State at stack is 0 (current stack content: 0)
+Push LHS (T) of the grammar rule (4: T -> F) onto stack
+Push new state comes from goto table onto stack: 2 (GOTO[0, T])
+Parse tree: grammar rule's LHS (T) becomes a node (parent) and tokens at the RHS (F) becomes its children
+Stack content after reduce: 0T2 
+
+Current stack content 0T2
+Current state (stack-top) is 2, next token is '*' (action table column 2)
+Fetched action from the table: s7
+
+Shift and goto state 7: push the token "*" and state 7 onto the stack
+Parse tree: token "*" becomes a node (leaf) 
+Move to next token
+
+Current stack content 0T2*7
+Current state (stack-top) is 7, next token is '(' (action table column 3)
+Fetched action from the table: s4
+
+Shift and goto state 4: push the token "(" and state 4 onto the stack
+Parse tree: token "(" becomes a node (leaf) 
+Move to next token
+
+Current stack content 0T2*7(4
+Current state (stack-top) is 4, next token is 'id' (action table column 0)
+Fetched action from the table: s5
+
+Shift and goto state 5: push the token "id" and state 5 onto the stack
+Parse tree: token "id" becomes a node (leaf) 
+Move to next token
+
+Current stack content 0T2*7(4id5
+Current state (stack-top) is 5, next token is '+' (action table column 1)
+Fetched action from the table: r6
+
+Reduce using grammar rule 6: F -> id
+Stack content before reduce: 0T2*7(4id5 
+Pop tokens and associated states from the stack considering the tokens at RHS of grammar rule (6: F -> id) 
+State at stack is 4 (current stack content: 0T2*7(4)
+Push LHS (F) of the grammar rule (6: F -> id) onto stack
+Push new state comes from goto table onto stack: 3 (GOTO[4, F])
+Parse tree: grammar rule's LHS (F) becomes a node (parent) and tokens at the RHS (id) becomes its children
+Stack content after reduce: 0T2*7(4F3 
+
+Current stack content 0T2*7(4F3
+Current state (stack-top) is 3, next token is '+' (action table column 1)
+Fetched action from the table: r4
+
+Reduce using grammar rule 4: T -> F
+Stack content before reduce: 0T2*7(4F3 
+Pop tokens and associated states from the stack considering the tokens at RHS of grammar rule (4: T -> F) 
+State at stack is 4 (current stack content: 0T2*7(4)
+Push LHS (T) of the grammar rule (4: T -> F) onto stack
+Push new state comes from goto table onto stack: 2 (GOTO[4, T])
+Parse tree: grammar rule's LHS (T) becomes a node (parent) and tokens at the RHS (F) becomes its children
+Stack content after reduce: 0T2*7(4T2 
+
+Current stack content 0T2*7(4T2
+Current state (stack-top) is 2, next token is '+' (action table column 1)
+Fetched action from the table: r2
+
+Reduce using grammar rule 2: E -> T
+Stack content before reduce: 0T2*7(4T2 
+Pop tokens and associated states from the stack considering the tokens at RHS of grammar rule (2: E -> T) 
+State at stack is 4 (current stack content: 0T2*7(4)
+Push LHS (E) of the grammar rule (2: E -> T) onto stack
+Push new state comes from goto table onto stack: 8 (GOTO[4, E])
+Parse tree: grammar rule's LHS (E) becomes a node (parent) and tokens at the RHS (T) becomes its children
+Stack content after reduce: 0T2*7(4E8 
+
+Current stack content 0T2*7(4E8
+Current state (stack-top) is 8, next token is '+' (action table column 1)
+Fetched action from the table: s6
+
+Shift and goto state 6: push the token "+" and state 6 onto the stack
+Parse tree: token "+" becomes a node (leaf) 
+Move to next token
+
+Current stack content 0T2*7(4E8+6
+Current state (stack-top) is 6, next token is 'id' (action table column 0)
+Fetched action from the table: s5
+
+Shift and goto state 5: push the token "id" and state 5 onto the stack
+Parse tree: token "id" becomes a node (leaf) 
+Move to next token
+
+Current stack content 0T2*7(4E8+6id5
+Current state (stack-top) is 5, next token is ')' (action table column 4)
+Fetched action from the table: r6
+
+Reduce using grammar rule 6: F -> id
+Stack content before reduce: 0T2*7(4E8+6id5 
+Pop tokens and associated states from the stack considering the tokens at RHS of grammar rule (6: F -> id) 
+State at stack is 6 (current stack content: 0T2*7(4E8+6)
+Push LHS (F) of the grammar rule (6: F -> id) onto stack
+Push new state comes from goto table onto stack: 3 (GOTO[6, F])
+Parse tree: grammar rule's LHS (F) becomes a node (parent) and tokens at the RHS (id) becomes its children
+Stack content after reduce: 0T2*7(4E8+6F3 
+
+Current stack content 0T2*7(4E8+6F3
+Current state (stack-top) is 3, next token is ')' (action table column 4)
+Fetched action from the table: r4
+
+Reduce using grammar rule 4: T -> F
+Stack content before reduce: 0T2*7(4E8+6F3 
+Pop tokens and associated states from the stack considering the tokens at RHS of grammar rule (4: T -> F) 
+State at stack is 6 (current stack content: 0T2*7(4E8+6)
+Push LHS (T) of the grammar rule (4: T -> F) onto stack
+Push new state comes from goto table onto stack: 9 (GOTO[6, T])
+Parse tree: grammar rule's LHS (T) becomes a node (parent) and tokens at the RHS (F) becomes its children
+Stack content after reduce: 0T2*7(4E8+6T9 
+
+Current stack content 0T2*7(4E8+6T9
+Current state (stack-top) is 9, next token is ')' (action table column 4)
+Fetched action from the table: r1
+
+Reduce using grammar rule 1: E -> E + T
+Stack content before reduce: 0T2*7(4E8+6T9 
+Pop tokens and associated states from the stack considering the tokens at RHS of grammar rule (1: E -> E + T) 
+State at stack is 4 (current stack content: 0T2*7(4)
+Push LHS (E) of the grammar rule (1: E -> E + T) onto stack
+Push new state comes from goto table onto stack: 8 (GOTO[4, E])
+Parse tree: grammar rule's LHS (E) becomes a node (parent) and tokens at the RHS (E + T) becomes its children
+Stack content after reduce: 0T2*7(4E8 
+
+Current stack content 0T2*7(4E8
+Current state (stack-top) is 8, next token is ')' (action table column 4)
+Fetched action from the table: s11
+
+Shift and goto state 11: push the token ")" and state 11 onto the stack
+Parse tree: token ")" becomes a node (leaf) 
+Move to next token
+
+Current stack content 0T2*7(4E8)11
+Current state (stack-top) is 11, next token is '$' (action table column 5)
+Fetched action from the table: r5
+
+Reduce using grammar rule 5: F -> ( E )
+Stack content before reduce: 0T2*7(4E8)11 
+Pop tokens and associated states from the stack considering the tokens at RHS of grammar rule (5: F -> ( E )) 
+State at stack is 7 (current stack content: 0T2*7)
+Push LHS (F) of the grammar rule (5: F -> ( E )) onto stack
+Push new state comes from goto table onto stack: 10 (GOTO[7, F])
+Parse tree: grammar rule's LHS (F) becomes a node (parent) and tokens at the RHS (( E )) becomes its children
+Stack content after reduce: 0T2*7F10 
+
+Current stack content 0T2*7F10
+Current state (stack-top) is 10, next token is '$' (action table column 5)
+Fetched action from the table: r3
+
+Reduce using grammar rule 3: T -> T * F
+Stack content before reduce: 0T2*7F10 
+Pop tokens and associated states from the stack considering the tokens at RHS of grammar rule (3: T -> T * F) 
+State at stack is 0 (current stack content: 0)
+Push LHS (T) of the grammar rule (3: T -> T * F) onto stack
+Push new state comes from goto table onto stack: 2 (GOTO[0, T])
+Parse tree: grammar rule's LHS (T) becomes a node (parent) and tokens at the RHS (T * F) becomes its children
+Stack content after reduce: 0T2 
+
+Current stack content 0T2
+Current state (stack-top) is 2, next token is '$' (action table column 5)
+Fetched action from the table: r2
+
+Reduce using grammar rule 2: E -> T
+Stack content before reduce: 0T2 
+Pop tokens and associated states from the stack considering the tokens at RHS of grammar rule (2: E -> T) 
+State at stack is 0 (current stack content: 0)
+Push LHS (E) of the grammar rule (2: E -> T) onto stack
+Push new state comes from goto table onto stack: 1 (GOTO[0, E])
+Parse tree: grammar rule's LHS (E) becomes a node (parent) and tokens at the RHS (T) becomes its children
+Stack content after reduce: 0E1 
+
+Current stack content 0E1
+Current state (stack-top) is 1, next token is '$' (action table column 5)
+Fetched action from the table: a
+
+ACCEPTED
+
+Parse tree:
+/E
+/E/T
+/E/T/T
+/E/T/T/F
+/E/T/T/F/id
+/E/T/*
+/E/T/F
+/E/T/F/(
+/E/T/F/E
+/E/T/F/E/E
+/E/T/F/E/E/T
+/E/T/F/E/E/T/F
+/E/T/F/E/E/T/F/id
+/E/T/F/E/+
+/E/T/F/E/T
+/E/T/F/E/T/F
+/E/T/F/E/T/F/id
+/E/T/F/)
