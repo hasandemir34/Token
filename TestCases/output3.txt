@@ -1,0 +1,40 @@
+Stack                                    Input                                    Action                                  
+--------------------------------------------------------------------------------------------------------
+0id5                                     id * ( id + id ) $                       Shift 5                                 
+0F3                                      * ( id + id ) $                          Reduce 6 (GOTO [0, F])                  
+0T2                                      * ( id + id ) $                          Reduce 4 (GOTO [0, T])                  
+0T2*7                                    * ( id + id ) $                          Shift 7                                 
+0T2*7(4                                  ( id + id ) $                            Shift 4                                 
+0T2*7(4id5                               id + id ) $                              Shift 5                                 
+0T2*7(4F3                                + id ) $                                 Reduce 6 (GOTO [4, F])                  
+0T2*7(4T2                                + id ) $                                 Reduce 4 (GOTO [4, T])                  
+0T2*7(4E8                                + id ) $                                 Reduce 2 (GOTO [4, E])                  
+0T2*7(4E8+6                              + id ) $                                 Shift 6                                 
+0T2*7(4E8+6id5                           id ) $                                   Shift 5                                 
+0T2*7(4E8+6F3                            ) $                                      Reduce 6 (GOTO [6, F])                  
+0T2*7(4E8+6T9                            ) $                                      Reduce 4 (GOTO [6, T])                  
+0T2*7(4E8                                ) $                                      Reduce 1 (GOTO [4, E])                  
+0T2*7(4E8)11                             ) $                                      Shift 11                                
+0T2*7F10                                 $                                        Reduce 5 (GOTO [7, F])                  
+0T2                                      $                                        Reduce 3 (GOTO [0, T])                  
+0E1                                      $                                        Reduce 2 (GOTO [0, E])                  
+--------------------------------------------------------------------------------------------------------
+Parse tree:
+/E
+/E/T
+/E/T/T
+/E/T/T/F
+/E/T/T/F/id
+/E/T/*
+/E/T/F
+/E/T/F/(
+/E/T/F/E
+/E/T/F/E/E
+/E/T/F/E/E/T
+/E/T/F/E/E/T/F
+/E/T/F/E/E/T/F/id
+/E/T/F/E/+
+/E/T/F/E/T
+/E/T/F/E/T/F
+/E/T/F/E/T/F/id
+/E/T/F/)
